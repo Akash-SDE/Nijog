@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card-mx-auto" style="width: 40rem;">
+           <div class="card-body">
+             <h5 class="card-title mb-3">Create a Job Advert</h5>
+
+             <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">Institute name</label>
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Established Date</label>
+                    <input type="text" name="est_date" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">City</label>
+                    <input type="text" name="city" class="form-control" id="exampleInputEmail">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">State</label>
+                    <input type="text" name="state" class="form-control" id="exampleInputEmail">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+             </form>
+           </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

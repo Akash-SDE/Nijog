@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+            <h2 class="display-5 fw-bold">Nijog . Faculty Recruitment Portal!</h2> <br>
+
+            <div class="card">
+                <div class="card-body">
+                    <form class="row gy-2 gx-3 align-items-center">
+                        <div class="col-sm-2">
+                            <label for="autoSizingInput">Name</label>
+                            <input type="text" name="title" value="{{ filter.form.title.value }}" class="form-control" id="autoSizingInput" placeholder="Job Keyword">
+
+                            
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="autoSizingInput">Select Location</label>
+                            <select name="state" class="form-select" id="autoSizingSelect">
+                                {% for choice in filter.form.statey.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if filter.form.state.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>
+          
+                        </div>
+                        <div class="col-sm-2">
+                            <label  for="autoSizingInput">Choose Job Type</label>
+                            <select name="state" class="form-select" id="autoSizingSelect">
+                                {% for choice in filter.form.job_type.field.choices %}
+                                    <option value="{{ choice.0 }}" {% if filter.form.state.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                                {% endfor %}
+                            </select>             
+                        </div>
+                        <div class="col-sm-2">
+                            <label  for="autoSizingInput">Select Institute</label>
+                            <select name="state" class="form-select" id="autoSizingSelect">
+                                    {% for choice in filter.form.industry.field.choices %}
+                                        <option value="{{ choice.0 }}" {% if filter.form.state.value == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                                    {% endfor %}
+                                </select>             
+                        </div>
+
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="col-md-8 fs-6 mt-3">
+                Welcome to Nijog Which a Faculty Recruitment Portal. We have thousands of job openings for You.
+                Don't forget to leave a like when you get your dream job. Good luck with your hunt!!
+            </p>
+            <button class="vtn-btn-outline-primry" type="button">More Jobs</button>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for job in filter.qs %}
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{job.title}}</h5>
+                    <p class="card-text">Institute: {{job.industry}}</p>
+                    <p class="card-text">Job Type: {{job.job_type}}</p>
+                    <p class="card-text">Location: {{job.city}}, {{job.statey}}</p>
+                    <p class="card-text">Salary: {{job.salary}}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{job.timestamp|naturaltime}}</small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% comment %} <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional 
+                        content.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last Updated 3 mins Ago</small>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Card Title</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                        additional content.This card has even longer content than the first to show that equal
+                        height action.</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last Updated 3 mins Ago</small>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div><br>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+    
+{% endblock content %}
